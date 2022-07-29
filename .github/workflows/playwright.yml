@@ -28,6 +28,6 @@ jobs:
             - uses: JamesIves/github-pages-deploy-action@4.1.4
               if: always()
               with:
-                  BRANCH: main # The branch the action should deploy to.
-                  FOLDER: ./playwright-report # The folder the action should deploy.
-                  TARGET_FOLDER: ./docs
+                  branch: main # The branch the action should deploy to.
+                  folder: ./playwright-report # The folder the action should deploy.
+                  target-folder: ./docs
