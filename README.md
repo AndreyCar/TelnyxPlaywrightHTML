@@ -1,4 +1,4 @@
-# Test case for site Telny.com                                         
+# Test case for site Telnyx.com                                         
 ## Playwright with html reporter                              
 ## Steps to run
 - Clone the repository using "git clone"
