@@ -4,4 +4,4 @@
 - Clone the repository using "git clone"
 - npm install
 - npm run test
-## [Report](https://andreycar.github.io/playwright/)
+## [Report](https://andreycar.github.io/TelnyxPlaywrightHTML/)
