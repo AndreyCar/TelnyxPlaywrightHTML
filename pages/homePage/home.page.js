@@ -7,6 +7,7 @@ class HomePage extends Page {
 	switchSelectedButton = '.ButtonGroup__Container-sc-6knlsx-0 button.Button__SecondaryButton-vntg8h-4';
 	powerFullProductsTitle = 'header>h2:first-child';
 	powerFullProducts = 'main ul>li>.mchNoDecorate[href^="/products/"]';
+	footerSocialButtons = 'footer [data-e2e="Footer--navItem-social"] ul>li a';
 
 	constructor(page) {
 		super(page);

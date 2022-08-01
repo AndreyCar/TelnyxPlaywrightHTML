@@ -1,3 +1,4 @@
+// @ts-check
 const { test, expect } = require('@playwright/test');
 const { IntegrationsPage } = require('../pages/integrations.page');
 

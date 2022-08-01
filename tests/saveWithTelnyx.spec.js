@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }, testInfo) => {
 });
 
 test.describe('Save with Telnyx', () => {
-	test('should check if the product option titles contains the selected product name on save with telnyx page', async ({ page }) => {
+	test('should check if the product option titles contains the selected product name', async ({ page }) => {
 		const saveWithTelnyxPage = new SaveWithTelnyxPage(page);
 
 		for (let i = 0; i < 2; i++) {

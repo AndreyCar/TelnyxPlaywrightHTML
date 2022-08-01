@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }, testInfo) => {
 });
 
 test.describe('Pricing currency in url', () => {
-	test('should check if the url contains the selected currency on pricing page', async ({ page }) => {
+	test('should check if the url contains the selected currency', async ({ page }) => {
 		const homePage = new HomePage(page);
 		const pricingPage = new PricingPage(page);
 		const pricingDropDownMenuCount = await homePage.count(homePage.headerPricingDropDownMenu);
@@ -29,12 +29,11 @@ test.describe('Pricing currency in url', () => {
 					currencyDropDownMenuSelect = pricingPage.currencyDropDownMenuSelect;
 				}
 				const currencyCount = await pricingPage.count(currencyDropDownMenuSelect);
-				const url = page.url();
 				for (let j = 0; j < currencyCount; ++j) {
 					await pricingPage.click(currencyDropDownMenu);
 					const currency = await pricingPage.textContentByIndex(currencyDropDownMenuSelect, j);
 					await pricingPage.clickByIndex(currencyDropDownMenuSelect, j);
-					await expect(page).toHaveURL(url + '?currency=' + currency);
+					await expect(page).toHaveURL(RegExp(currency, 'i'));
 				}
 				await homePage.goto('');
 			}

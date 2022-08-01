@@ -14,12 +14,11 @@ test.describe('Powerful products', () => {
 		const powerFullProductsCount = await homePage.count(homePage.powerFullProducts);
 
 		for (let i = 0; i < powerFullProductsCount; i++) {
-			const url = page.url();
 			const productUrl = await homePage.getAttributeByIndex(homePage.powerFullProducts, i, 'href');
 			await homePage.scrollIntoViewByIndex(homePage.powerFullProducts, i);
 			await homePage.clickByIndex(homePage.powerFullProducts, i);
 			await page.waitForLoadState('load');
-			await expect(page).toHaveURL(url + productUrl.replace('/', ''));
+			await expect(page).toHaveURL(RegExp(productUrl, 'i'));
 			await page.goBack();
 		}
 	});
