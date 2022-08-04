@@ -1,10 +1,7 @@
 const { test, expect } = require('@playwright/test');
 const { HomePage } = require('../pages/homePage/home.page');
 
-const socialMedia = [
-	['linkedin', 'twitter', 'facebook'],
-	['https://www.linkedin.com/company/telnyx/', 'https://twitter.com/telnyx', 'https://www.facebook.com/Telnyx/'],
-];
+const socialMedia = ['linkedin', 'twitter', 'facebook'];
 
 test.beforeEach(async ({ page }) => {
 	const homePage = new HomePage(page);
@@ -21,13 +18,12 @@ test.describe('Social media', () => {
 		for (let i = 0; i < footerSocialButtonsCount; i++) {
 			await homePage.scrollIntoView(homePage.footer);
 			await expect(await homePage.getElementByIndex(homePage.footerSocialButtons, i)).toContainText(
-				socialMedia[0][i],
+				socialMedia[i],
 				{ ignoreCase: true }
 			);
 			await expect(await homePage.getElementByIndex(homePage.footerSocialButtons, i)).toHaveAttribute(
 				'href',
-				socialMedia[1][i],
-				{ ignoreCase: true }
+				RegExp(socialMedia[i], 'i')
 			);
 		}
 	});
