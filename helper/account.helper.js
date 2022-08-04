@@ -18,7 +18,7 @@ class Account extends Page {
 		await this.homePage.click(this.homePage.logInButton);
 		await this.page.waitForLoadState('load');
 		await this.logInPage.login(email, password);
-		await expect(this.page).toHaveURL(/\/app/, {timeout: 15000});
+		await expect(this.page).toHaveURL(/\/app/, {timeout: 50000});
 	}
 }
 
