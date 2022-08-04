@@ -76,10 +76,12 @@ class Page {
 	}
 
 	async fill(selector, text) {
+		//await this.page.locator(selector).clcik();
 		await this.page.locator(selector).fill(text);
 	}
 
 	async fillByIndex(selector, index, text) {
+		//await this.page.locator(selector).nth(index).clcik();
 		await this.page.locator(selector).nth(index).fill(text);
 	}
 }

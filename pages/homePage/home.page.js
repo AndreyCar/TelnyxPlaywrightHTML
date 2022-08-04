@@ -8,6 +8,7 @@ class HomePage extends Page {
 	powerFullProductsTitle = 'header>h2:first-child';
 	powerFullProducts = 'main ul>li>.mchNoDecorate[href^="/products/"]';
 	footerSocialButtons = 'footer [data-e2e="Footer--navItem-social"] ul>li a';
+	logInButton = 'header #dialogAudio+.mchNoDecorate+[href="https://portal.telnyx.com/"]';
 
 	constructor(page) {
 		super(page);

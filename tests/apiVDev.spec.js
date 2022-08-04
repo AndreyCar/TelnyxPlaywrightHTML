@@ -7,7 +7,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe('Dev API versions Functionality', () => {
-	test('should check if the API version buttons send the user to the correct page', async ({ page }) => {
+	test('Should check if the API version buttons send the user to the correct page', async ({ page }) => {
 		const developersPage = new DevelopersPage(page);
 		await developersPage.click(developersPage.apiV1Button);
 		await expect(page).toHaveURL(/docs\/v1/);
