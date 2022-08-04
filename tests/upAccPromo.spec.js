@@ -10,6 +10,7 @@ test.beforeEach(async ({ page }) => {
 test.describe('Update account promo Functionality', () => {
 	test('Should enter the invalid promo code and check if the error is displayed', async ({ page }) => {
 		const accountHomePage = new AccountHomePage(page);
+		page.waitForLoadState('load');
 		await accountHomePage.hover(accountHomePage.updateAccountbutton);
 		await accountHomePage.fill(accountHomePage.promoInput, 'goodPromo');
 		await accountHomePage.click(accountHomePage.promoAddButton);
