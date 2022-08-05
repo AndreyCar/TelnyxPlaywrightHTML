@@ -2,6 +2,8 @@ const { test, expect } = require('@playwright/test');
 const { HomePage } = require('../pages/homePage/home.page');
 const { PricingPage } = require('../pages/pricing.page');
 
+test.use({ timeout: 60 * 1000 });
+
 test.beforeEach(async ({ page }, testInfo) => {
 	const homePage = new HomePage(page);
 	await homePage.goto('');
