@@ -3,6 +3,9 @@ const { expect } = require('@playwright/test');
 
 class SIPConnectionsPage extends Page {
 	addSIPConnectionButton = '#addConnectionBtn	 button';
+	sortByButton = '.card-block [e2e="sort"]';
+	sortDDL = '#ui-select-choices-row-0-';
+	sortOrder = '.card-block .btn-group>button>i';
 	errorMessage = '.alert-container div[type="danger"]';
 	connectWithUsLink = '.tab-content a[href="https://sip.telnyx.com"]';
 	//table
@@ -11,6 +14,7 @@ class SIPConnectionsPage extends Page {
 	emptyTableMessage = '.empty-table-message';
 	tableSipConnectionNameInputs = '#connectionsTable input[e2e="connectionNameCell"]';
 	tableAuthDetailInputs = '#connectionsTable input[e2e="username"]';
+	activeSwitchButton = 'table [role="switch"]';
 	//filter
 	filterByNameInput = '.card-header input[e2e="connectionName"]';
 	filterByIPInput = '.card-header input[e2e="ipAddress"]';
@@ -54,13 +58,12 @@ class SIPConnectionsPage extends Page {
 			await this.click(this.confirmButton);
 		}
 	}
-	async deleteSIPConnections(howMany) {
+	async deleteSIPConnections(numberOfSIPConnection) {
 		var sipConnectionCount = this.count(this.deleteSIPConnectionButtons);
-		if (howMany == 'all' || howMany == 'All' || howMany == 'ALL') {
+		if (numberOfSIPConnection == 'all' || numberOfSIPConnection == 'All' || numberOfSIPConnection == 'ALL') {
 			this.delete(sipConnectionCount);
-			await expect(await this.getElement(this.emptyTableMessage)).toBeVisible();
 		} else {
-			this.delete(howMany);
+			this.delete(numberOfSIPConnection);
 		}
 	}
 }

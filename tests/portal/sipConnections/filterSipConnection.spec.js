@@ -10,6 +10,7 @@ test.beforeEach(async ({ account, sipConnectionsPage }) => {
 });
 
 test.afterAll(async ({ sipConnectionsPage, account }) => {
+	await sipConnectionsPage.goto();
 	await sipConnectionsPage.deleteSIPConnections(sipConnectionsCount);
 	await expect(await sipConnectionsPage.getElement(sipConnectionsPage.emptyTableMessage)).toBeVisible();
 	await account.logout();
@@ -44,13 +45,13 @@ test.describe('SIP Connections filter Functionality', () => {
 		await expect(await sipConnectionsPage.getElement(sipConnectionsPage.emptyTableMessage)).toBeVisible();
 	});
 
-	test.skip('Should filter by id, when no ip is added', async ({ sipConnectionsPage }) => {
+	test('Should filter by id, when no ip is added', async ({ sipConnectionsPage }) => {
 		await sipConnectionsPage.fill(sipConnectionsPage.filterByIPInput, 'ip');
 		await sipConnectionsPage.click(sipConnectionsPage.applyFilterButton);
 		await expect(await sipConnectionsPage.getElement(sipConnectionsPage.errorMessage)).toBeVisible();
 	});
 
-	test.skip('Should filter by auth username', async ({ sipConnectionsPage, page }) => {
+	test('Should filter by auth username', async ({ sipConnectionsPage, page }) => {
 		await sipConnectionsPage.clickByIndex(sipConnectionsPage.basicOptionButtons, 0);
 		await sipConnectionsPage.click(sipConnectionsPage.credentialsButton);
 		const username = rand(10, 'string');
