@@ -25,7 +25,7 @@ test.describe('SIP Connections filter Functionality', () => {
 		}
 	});
 
-	test.skip('Should filter by valid name', async ({ sipConnectionsPage }) => {
+	test('Should filter by valid name', async ({ sipConnectionsPage }) => {
 		await sipConnectionsPage.fill(sipConnectionsPage.filterByNameInput, sipConnectionsname);
 		await sipConnectionsPage.click(sipConnectionsPage.applyFilterButton);
 		for (
@@ -39,7 +39,7 @@ test.describe('SIP Connections filter Functionality', () => {
 		}
 	});
 
-	test.skip('Should filter by invalid name', async ({ sipConnectionsPage }) => {
+	test('Should filter by invalid name', async ({ sipConnectionsPage }) => {
 		await sipConnectionsPage.fill(sipConnectionsPage.filterByNameInput, 'invalid name');
 		await sipConnectionsPage.click(sipConnectionsPage.applyFilterButton);
 		await expect(await sipConnectionsPage.getElement(sipConnectionsPage.emptyTableMessage)).toBeVisible();
@@ -51,7 +51,7 @@ test.describe('SIP Connections filter Functionality', () => {
 		await expect(await sipConnectionsPage.getElement(sipConnectionsPage.errorMessage)).toBeVisible();
 	});
 
-	test('Should filter by auth username', async ({ sipConnectionsPage, page }) => {
+	test.skip('Should filter by auth username', async ({ sipConnectionsPage, page }) => {
 		await sipConnectionsPage.clickByIndex(sipConnectionsPage.basicOptionButtons, 0);
 		await sipConnectionsPage.click(sipConnectionsPage.credentialsButton);
 		const username = rand(10, 'string');
