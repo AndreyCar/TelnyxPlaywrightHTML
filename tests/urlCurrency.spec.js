@@ -1,19 +1,14 @@
-const { test, expect } = require('@playwright/test');
-const { HomePage } = require('../pages/homePage/home.page');
-const { PricingPage } = require('../pages/pricing.page');
+const { test, expect } = require('../test');
 
-test.use({ timeout: 60 * 1000 });
+test.use({ timeout: 80 * 1000 });
 
-test.beforeEach(async ({ page }, testInfo) => {
-	const homePage = new HomePage(page);
+test.beforeEach(async ({ homePage }) => {
 	await homePage.goto('');
 	await homePage.closeCookies();
 });
 
 test.describe('Pricing currency in url', () => {
-	test('should check if the url contains the selected currency', async ({ page }) => {
-		const homePage = new HomePage(page);
-		const pricingPage = new PricingPage(page);
+	test('should check if the url contains the selected currency', async ({ homePage, pricingPage, page }) => {
 		const pricingDropDownMenuCount = await homePage.count(homePage.headerPricingDropDownMenu);
 		for (let i = 0; i < pricingDropDownMenuCount; ++i) {
 			await homePage.hoverByIndex(homePage.headerMenu, 5);

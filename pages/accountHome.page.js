@@ -1,11 +1,6 @@
-const { Page } = require('./page');
+const { PortalPage } = require('./portal/portalPage');
 
-class AccountHomePage extends Page {
-	updateAccountbutton = 'react-title-bar .tx-ZupKLN+div button';
-	promoInput = '[name="promocode"]';
-	promoAddButton = '//input[@name="promocode"]//following::div//button';
-	promoErrorMessage = '[type="error"] span';
-
+class AccountHomePage extends PortalPage {
 	constructor(page) {
 		super(page);
 		this.page = page;

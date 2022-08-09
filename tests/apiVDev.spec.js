@@ -1,14 +1,14 @@
-const { test, expect } = require('@playwright/test');
-const { DevelopersPage } = require('../pages/developers.page');
+const { test, expect } = require('../test');
 
-test.beforeEach(async ({ page }) => {
-	const developersPage = new DevelopersPage(page);
+test.beforeEach(async ({ developersPage }) => {
 	await developersPage.goto('', '');
 });
 
 test.describe('Dev API versions Functionality', () => {
-	test('Should check if the API version buttons send the user to the correct page', async ({ page }) => {
-		const developersPage = new DevelopersPage(page);
+	test('Should check if the API version buttons send the user to the correct page', async ({
+		developersPage,
+		page,
+	}) => {
 		await developersPage.click(developersPage.apiV1Button);
 		await expect(page).toHaveURL(/docs\/v1/);
 		await developersPage.click(developersPage.warningMessageV2button);

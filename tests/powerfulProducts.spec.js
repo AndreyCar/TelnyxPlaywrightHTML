@@ -1,16 +1,13 @@
-const { test, expect } = require('@playwright/test');
-const { HomePage } = require('../pages/homePage/home.page');
+const { test, expect } = require('../test');
 
-test.beforeEach(async ({ page }) => {
-	const homePage = new HomePage(page);
+test.beforeEach(async ({ homePage }) => {
 	await homePage.goto('');
 	await homePage.closeCookies();
 	await homePage.scrollIntoView(homePage.powerFullProductsTitle);
 });
 
 test.describe('Powerful products', () => {
-	test('should check if the url contains the selected product href', async ({ page }) => {
-		const homePage = new HomePage(page);
+	test('should check if the url contains the selected product href', async ({ homePage, page }) => {
 		const powerFullProductsCount = await homePage.count(homePage.powerFullProducts);
 
 		for (let i = 0; i < powerFullProductsCount; i++) {

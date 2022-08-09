@@ -1,7 +1,7 @@
 const { Page } = require('./page');
 
 class CartPage extends Page {
-	CartIsEmptyLabel = 'react-my-cart .tx-Z1VR9ee';
+	cartIsEmptyLabel = 'react-my-cart .tx-Z1VR9ee';
 	addSimToCartButton = 'react-my-cart div[class^="AddSIMToCartDropdown__SimDropdownContainer"]+button';
 	removeFromCartButton = 'td:last-child button';
 

@@ -6,8 +6,8 @@
   "scripts": {
     "test" : "npx playwright test",
     "test:headed" : "npx playwright test --headed",
-    "test1:" : "npx playwright test cartEmpty.spec",
-    "test1:headed" : "npx playwright test cartEmpty.spec --headed ",
+    "test1:" : "npx playwright test sipConnectionFilter.spec",
+    "test1:headed" : "npx playwright test sipConnectionFilter.spec --headed ",
     "reporter": "npx playwright show-report"
 
   },

@@ -1,30 +1,28 @@
-const { test, expect } = require('@playwright/test');
-const { HomePage } = require('../pages/homePage/home.page');
+const { test, expect } = require('../test');
 
-const socialMedia = ['linkedin', 'twitter', 'facebook'];
+const socialMediaName = ['linkedin', 'twitter', 'facebook'];
 
-test.beforeEach(async ({ page }) => {
-	const homePage = new HomePage(page);
+test.beforeEach(async ({ homePage }) => {
 	await homePage.goto('');
 	await homePage.closeCookies();
 	await homePage.scrollIntoView(homePage.powerFullProductsTitle);
 });
 
 test.describe('Social media', () => {
-	test('should check if the social media buttons have correct text and href', async ({ page }) => {
-		const homePage = new HomePage(page);
-
+	test('should check if the social media buttons have correct text and href', async ({ homePage, page }) => {
 		const footerSocialButtonsCount = await homePage.count(homePage.footerSocialButtons);
 		for (let i = 0; i < footerSocialButtonsCount; i++) {
 			await homePage.scrollIntoView(homePage.footer);
 			await expect(await homePage.getElementByIndex(homePage.footerSocialButtons, i)).toContainText(
-				socialMedia[i],
+				socialMediaName[i],
 				{ ignoreCase: true }
 			);
-			await expect(await homePage.getElementByIndex(homePage.footerSocialButtons, i)).toHaveAttribute(
-				'href',
-				RegExp(socialMedia[i], 'i')
-			);
+			const [newPage] = await Promise.all([
+				page.context().waitForEvent('page'),
+				await homePage.clickByIndex(homePage.footerSocialButtons, i),
+			]);
+			await expect(newPage).toHaveURL(RegExp(socialMediaName[i], 'i'));
+			await newPage.close();
 		}
 	});
 });
