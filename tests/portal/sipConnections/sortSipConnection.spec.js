@@ -25,7 +25,7 @@ test.describe('SIP Connections sort Functionality', () => {
 		}
 	});
 
-	test.skip('Should sort by creation date', async ({ sipConnectionsPage }) => {
+	test('Should sort by creation date', async ({ sipConnectionsPage }) => {
 		await sipConnectionsPage.click(sipConnectionsPage.sortByButton);
 		await sipConnectionsPage.click(sipConnectionsPage.sortDDL + '0');
 		const sortOrder = await sipConnectionsPage.getAttribute(sipConnectionsPage.sortOrder, 'class');
@@ -53,7 +53,7 @@ test.describe('SIP Connections sort Functionality', () => {
 		}
 	});
 
-	test.skip('Should sort by SIP connection name', async ({ sipConnectionsPage }) => {
+	test('Should sort by SIP connection name', async ({ sipConnectionsPage }) => {
 		await sipConnectionsPage.click(sipConnectionsPage.sortByButton);
 		await sipConnectionsPage.click(sipConnectionsPage.sortDDL + '1');
 		const sortOrder = await sipConnectionsPage.getAttribute(sipConnectionsPage.sortOrder, 'class');
@@ -113,7 +113,7 @@ test.describe('SIP Connections sort Functionality', () => {
 		}
 	});
 
-	test.skip('Should sort by Auth type', async ({ sipConnectionsPage }) => {
+	test('Should sort by Auth type', async ({ sipConnectionsPage }) => {
 		await sipConnectionsPage.clickByIndex(sipConnectionsPage.basicOptionButtons, 0);
 		await sipConnectionsPage.click(sipConnectionsPage.credentialsButton);
 		const username = rand(10, 'string');
