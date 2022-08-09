@@ -17,7 +17,6 @@ test.afterAll(async ({ sipConnectionsPage, account }) => {
 
 test.describe('SIP Connections filter Functionality', () => {
 	test(`Should create ${sipConnectionsCount} SIP Connections`, async ({ sipConnectionsPage }) => {
-		await sipConnectionsPage.goto();
 		await expect(await sipConnectionsPage.getElement(sipConnectionsPage.emptyTableMessage)).toBeVisible();
 
 		for (let index = 0; index < sipConnectionsCount; index++) {
@@ -68,9 +67,7 @@ test.describe('SIP Connections filter Functionality', () => {
 		) {
 			const elem = sipConnectionsPage.tableAuthDetailInput;
 			console.log(await page.$eval('#connectionsTable input[e2e="username"]', (e) => e.value));
-			await expect(await page.$eval(elem, (e) => e.value)).toEqual(
-				RegExp(username, 'i')
-			);
+			await expect(await page.$eval(elem, (e) => e.value)).toEqual(RegExp(username, 'i'));
 		}
 	});
 });

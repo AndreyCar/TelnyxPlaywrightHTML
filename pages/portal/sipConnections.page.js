@@ -4,6 +4,7 @@ const { expect } = require('@playwright/test');
 class SIPConnectionsPage extends Page {
 	addSIPConnectionButton = '#addConnectionBtn	 button';
 	errorMessage = '.alert-container div[type="danger"]';
+	connectWithUsLink = '.tab-content a[href="https://sip.telnyx.com"]';
 	//table
 	deleteSIPConnectionButtons = 'button[e2e="deleteConnection"]';
 	basicOptionButtons = 'button[e2e="basicOption"]';
