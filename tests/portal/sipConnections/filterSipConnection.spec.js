@@ -66,9 +66,9 @@ test.describe('SIP Connections filter Functionality', () => {
 			index < (await sipConnectionsPage.count(sipConnectionsPage.tableSipConnectionNameInputs));
 			index++
 		) {
-			const elem = sipConnectionsPage.tableAuthDetailInput;
-			console.log(await page.$eval('#connectionsTable input[e2e="username"]', (e) => e.value));
-			await expect(await page.$eval(elem, (e) => e.value)).toEqual(RegExp(username, 'i'));
+			await expect(await page.$eval('#connectionsTable input[e2e="username"]', (e) => e.value)).toEqual(
+				RegExp(username, 'i')
+			);
 		}
 	});
 });
