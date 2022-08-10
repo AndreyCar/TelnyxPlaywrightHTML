@@ -1,5 +1,5 @@
 const { test, expect } = require('../../../test');
-const { rand } = require('../../../helper/random.helper');
+const { getRandomString } = require('../../../helper/random.helper');
 
 const sipConnectionsCount = 3,
 	sipConnectionsname = 'sip_connection';
@@ -12,6 +12,7 @@ test.describe('SIP Connections sort Functionality', () => {
 		for (let index = 0; index < sipConnectionsCount; index++) {
 			await sipConnectionsPage.createSIPConnection(sipConnectionsname + '_' + index);
 		}
+		await sipConnectionsPage.goto();
 	});
 
 	test.afterEach(async ({ sipConnectionsPage }) => {
@@ -116,7 +117,7 @@ test.describe('SIP Connections sort Functionality', () => {
 	test('Should sort by Auth type', async ({ sipConnectionsPage }) => {
 		await sipConnectionsPage.clickByIndex(sipConnectionsPage.basicOptionButtons, 0);
 		await sipConnectionsPage.click(sipConnectionsPage.credentialsButton);
-		const username = rand(10, 'string');
+		const username = getRandomString(10, 'string');
 		await sipConnectionsPage.click(sipConnectionsPage.credentialsEditUsernameButton);
 		await sipConnectionsPage.fill(sipConnectionsPage.credentialsUsernameInput, '');
 		await sipConnectionsPage.fill(sipConnectionsPage.credentialsUsernameInput, username);

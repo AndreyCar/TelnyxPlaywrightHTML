@@ -15,6 +15,9 @@ class SIPConnectionsPage extends Page {
 	tableSipConnectionNameInputs = '#connectionsTable input[e2e="connectionNameCell"]';
 	tableAuthDetailInputs = '#connectionsTable input[e2e="username"]';
 	activeSwitchButton = 'table [role="switch"]';
+	anchorSiteTableButton = 'table div[e2e="anchorSite"]';
+	anchorSiteDDL = '[id^="ui-select-choices-row"]';
+	anchorSiteText = 'table div[e2e="anchorSite"]  span[class="ng-binding ng-scope"]';
 	//filter
 	filterByNameInput = '.card-header input[e2e="connectionName"]';
 	filterByIPInput = '.card-header input[e2e="ipAddress"]';
@@ -30,10 +33,14 @@ class SIPConnectionsPage extends Page {
 	confirmButton = '.modal-content button+button';
 	sipConnectionTypeButtons = '.modal-content #accordiongroup-5173-279-panel button';
 	saveNameButton = '#name+span>button';
-	//modal//credentials
+	//modal/sipConnectionType/credentials
 	credentialsButton = '.modal-content [e2e="registration"]';
 	credentialsUsernameInput = '.modal-content [name="credentialUsername"]';
 	credentialsEditUsernameButton = '.modal-content button[e2e="editUserName"]';
+	//modal/anchorSite
+	anchorSiteModalButton = '.modal-dialog  [class^="connection-anchorsite"]';
+	anchorSiteModalText = '.modal-dialog  [class^="connection-anchorsite"] small';
+	anchorSiteModalDDL = '.modal-dialog  [class^="connection-anchorsite"] input';
 
 	constructor(page) {
 		super(page);

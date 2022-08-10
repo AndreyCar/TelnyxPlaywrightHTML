@@ -1,5 +1,5 @@
 const { test, expect } = require('../../../test');
-const { rand } = require('../../../helper/random.helper');
+const { getRandomString } = require('../../../helper/random.helper');
 
 const sipConnectionsCount = 3,
 	sipConnectionsname = 'sip_connection';
@@ -12,15 +12,16 @@ test.describe('SIP Connections filter Functionality', () => {
 		for (let index = 0; index < sipConnectionsCount; index++) {
 			await sipConnectionsPage.createSIPConnection(sipConnectionsname + '_' + index);
 		}
+		await sipConnectionsPage.goto();
 	});
 
-	test.afterEach(async ({sipConnectionsPage }) => {
+	test.afterEach(async ({ sipConnectionsPage }) => {
 		await sipConnectionsPage.goto();
 		await sipConnectionsPage.deleteSIPConnections(sipConnectionsCount);
 		await expect(await sipConnectionsPage.getElement(sipConnectionsPage.emptyTableMessage)).toBeVisible();
 	});
 
-	test.afterAll(async ({account }) => {
+	test.afterAll(async ({ account }) => {
 		await account.logout();
 	});
 
@@ -53,7 +54,7 @@ test.describe('SIP Connections filter Functionality', () => {
 	test('Should filter by auth username', async ({ sipConnectionsPage, page }) => {
 		await sipConnectionsPage.clickByIndex(sipConnectionsPage.basicOptionButtons, 0);
 		await sipConnectionsPage.click(sipConnectionsPage.credentialsButton);
-		const username = rand(11, 'string');
+		const username = getRandomString(11, 'string');
 		await sipConnectionsPage.click(sipConnectionsPage.credentialsEditUsernameButton);
 		await sipConnectionsPage.fill(sipConnectionsPage.credentialsUsernameInput, '');
 		await sipConnectionsPage.fill(sipConnectionsPage.credentialsUsernameInput, username);
@@ -65,9 +66,7 @@ test.describe('SIP Connections filter Functionality', () => {
 			index < (await sipConnectionsPage.count(sipConnectionsPage.tableSipConnectionNameInputs));
 			index++
 		) {
-			await expect(await page.$eval('#connectionsTable input[e2e="username"]', (e) => e.value)).toEqual(
-				username
-			);
+			await expect(await page.$eval('#connectionsTable input[e2e="username"]', (e) => e.value)).toEqual(username);
 		}
 	});
 });
