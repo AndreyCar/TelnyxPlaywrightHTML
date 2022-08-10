@@ -54,7 +54,7 @@ test.describe('SIP Connections filter Functionality', () => {
 	test('Should filter by auth username', async ({ sipConnectionsPage, page }) => {
 		await sipConnectionsPage.clickByIndex(sipConnectionsPage.basicOptionButtons, 0);
 		await sipConnectionsPage.click(sipConnectionsPage.credentialsButton);
-		const username = rand(10, 'string');
+		const username = rand(11, 'string');
 		await sipConnectionsPage.click(sipConnectionsPage.credentialsEditUsernameButton);
 		await sipConnectionsPage.fill(sipConnectionsPage.credentialsUsernameInput, '');
 		await sipConnectionsPage.fill(sipConnectionsPage.credentialsUsernameInput, username);
