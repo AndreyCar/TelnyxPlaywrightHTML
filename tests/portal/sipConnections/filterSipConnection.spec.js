@@ -4,25 +4,24 @@ const { rand } = require('../../../helper/random.helper');
 const sipConnectionsCount = 3,
 	sipConnectionsname = 'sip_connection';
 
-test.beforeEach(async ({ account, sipConnectionsPage }) => {
-	await account.login();
-	await sipConnectionsPage.goto();
-});
-
-test.afterAll(async ({ sipConnectionsPage, account }) => {
-	await sipConnectionsPage.goto();
-	await sipConnectionsPage.deleteSIPConnections(sipConnectionsCount);
-	await expect(await sipConnectionsPage.getElement(sipConnectionsPage.emptyTableMessage)).toBeVisible();
-	await account.logout();
-});
-
 test.describe('SIP Connections filter Functionality', () => {
-	test(`Should create ${sipConnectionsCount} SIP Connections`, async ({ sipConnectionsPage }) => {
+	test.beforeEach(async ({ account, sipConnectionsPage }) => {
+		await account.login();
+		await sipConnectionsPage.goto();
 		await expect(await sipConnectionsPage.getElement(sipConnectionsPage.emptyTableMessage)).toBeVisible();
-
 		for (let index = 0; index < sipConnectionsCount; index++) {
 			await sipConnectionsPage.createSIPConnection(sipConnectionsname + '_' + index);
 		}
+	});
+
+	test.afterEach(async ({sipConnectionsPage }) => {
+		await sipConnectionsPage.goto();
+		await sipConnectionsPage.deleteSIPConnections(sipConnectionsCount);
+		await expect(await sipConnectionsPage.getElement(sipConnectionsPage.emptyTableMessage)).toBeVisible();
+	});
+
+	test.afterAll(async ({account }) => {
+		await account.logout();
 	});
 
 	test('Should filter by valid name', async ({ sipConnectionsPage }) => {
@@ -67,7 +66,7 @@ test.describe('SIP Connections filter Functionality', () => {
 			index++
 		) {
 			await expect(await page.$eval('#connectionsTable input[e2e="username"]', (e) => e.value)).toEqual(
-				RegExp(username, 'i')
+				username
 			);
 		}
 	});
