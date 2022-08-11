@@ -45,10 +45,27 @@ test.describe('SIP Connections filter Functionality', () => {
 		await expect(await sipConnectionsPage.getElement(sipConnectionsPage.emptyTableMessage)).toBeVisible();
 	});
 
-	test('Should filter by id, when no ip is added', async ({ sipConnectionsPage }) => {
+	test('Should filter by ip, when no ip is added', async ({ sipConnectionsPage }) => {
 		await sipConnectionsPage.fill(sipConnectionsPage.filterByIPInput, 'ip');
 		await sipConnectionsPage.click(sipConnectionsPage.applyFilterButton);
 		await expect(await sipConnectionsPage.getElement(sipConnectionsPage.errorMessage)).toBeVisible();
+	});
+
+	test('Should filter by valid ip', async ({ sipConnectionsPage }) => {
+		const ip = '200.200.200.200';
+		await sipConnectionsPage.addIp(ip, 0);
+		await sipConnectionsPage.fill(sipConnectionsPage.filterByIPInput, ip);
+		await sipConnectionsPage.click(sipConnectionsPage.applyFilterButton);
+		await expect(await sipConnectionsPage.getElement(sipConnectionsPage.ipTableText)).toHaveText(ip);
+	});
+
+	test('Should filter by invalid ip', async ({ sipConnectionsPage }) => {
+		const ip = '200.200.200.200';
+		const invalidIp = '200.200.200.201';
+		await sipConnectionsPage.addIp(ip, 0);
+		await sipConnectionsPage.fill(sipConnectionsPage.filterByIPInput, invalidIp);
+		await sipConnectionsPage.click(sipConnectionsPage.applyFilterButton);
+		await expect(await sipConnectionsPage.getElement(sipConnectionsPage.emptyTableMessage)).toBeVisible();
 	});
 
 	test('Should filter by auth username', async ({ sipConnectionsPage, page }) => {

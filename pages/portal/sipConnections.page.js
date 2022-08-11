@@ -18,6 +18,7 @@ class SIPConnectionsPage extends Page {
 	anchorSiteTableButton = 'table div[e2e="anchorSite"]';
 	anchorSiteDDL = '[id^="ui-select-choices-row"]';
 	anchorSiteText = 'table div[e2e="anchorSite"]  span[class="ng-binding ng-scope"]';
+	ipTableText = 'table [e2e="ipAddressCell"]';
 	//filter
 	filterByNameInput = '.card-header input[e2e="connectionName"]';
 	filterByIPInput = '.card-header input[e2e="ipAddress"]';
@@ -37,6 +38,10 @@ class SIPConnectionsPage extends Page {
 	credentialsButton = '.modal-content [e2e="registration"]';
 	credentialsUsernameInput = '.modal-content [name="credentialUsername"]';
 	credentialsEditUsernameButton = '.modal-content button[e2e="editUserName"]';
+	//modal/sipConnectionType/ip
+	ipButton = '.modal-content [e2e="ipAddress"]';
+	ipInput = '.modal-dialog  #ipAddress';
+	saveIpButton = '.modal-dialog  #ipAddress+span>button';
 	//modal/anchorSite
 	anchorSiteModalButton = '.modal-dialog  [class^="connection-anchorsite"]';
 	anchorSiteModalText = '.modal-dialog  [class^="connection-anchorsite"] small';
@@ -72,6 +77,14 @@ class SIPConnectionsPage extends Page {
 		} else {
 			this.delete(numberOfSIPConnection);
 		}
+	}
+
+	async addIp(ip, index) {
+		await this.clickByIndex(this.basicOptionButtons, index);
+		await this.click(this.ipButton);
+		await this.fill(this.ipInput, ip);
+		await this.click(this.saveIpButton);
+		await this.click(this.saveAllChanges);
 	}
 }
 
