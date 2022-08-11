@@ -23,6 +23,15 @@ class Account extends Page {
 		await expect(this.page).toHaveURL(/app/, { timeout: 30000 });
 	}
 
+	async loginWithRandomCredential() {
+		let account = [
+			['testcasesignin@gmail.com', 'Testpassword1!'],
+			['testmailtelnyx.1@gmail.com', 'Testpassword1!'],
+		];
+		for (let index = 0; index < account.length; index++) {
+			await this.login(account[index][0], account[index][1]);
+		}
+	}
 	async logout() {
 		await this.portalPage.hover(this.portalPage.profile);
 		await this.portalPage.click(this.portalPage.logOutProfileDDLButton);
