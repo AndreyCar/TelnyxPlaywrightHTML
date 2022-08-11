@@ -8,7 +8,7 @@ test.beforeEach(async ({ homePage }) => {
 });
 
 test.describe('Pricing currency in url', () => {
-	test('should check if the url contains the selected currency', async ({ homePage, pricingPage, page }) => {
+	test.skip('should check if the url contains the selected currency', async ({ homePage, pricingPage, page }) => {
 		const pricingDropDownMenuCount = await homePage.count(homePage.headerPricingDropDownMenu);
 		for (let i = 0; i < pricingDropDownMenuCount; ++i) {
 			await homePage.hoverByIndex(homePage.headerMenu, 5);

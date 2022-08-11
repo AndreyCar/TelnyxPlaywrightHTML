@@ -9,7 +9,7 @@ class SaveWithTelnyxPage extends HomePage {
 	tollFreeNumbersRDB = '#toll-free-numbers';
 	programmableVoiceYesRBD = '#yes';
 	programmableVoiceNoRBD = '#no';
-	costsText = '//span[text()="$"]	';
+	costsTexts = '//span[text()="$"]';
 
 	async replaceFromCost(text) {
 		return parseInt(text.replace('$', '').replace(',', ''), 10);
@@ -17,9 +17,9 @@ class SaveWithTelnyxPage extends HomePage {
 
 	async checkCosts(selector1, selector2) {
 		await this.click(selector1);
-		const costTelnyx = await this.replaceFromCost(await this.textContentByIndex(this.costsText, 0));
+		const costTelnyx = await this.replaceFromCost(await this.textContentByIndex(this.costsTexts, 0));
 		await this.click(selector2);
-		expect(await this.replaceFromCost(await this.textContentByIndex(this.costsText, 0))).not.toEqual(costTelnyx);
+		expect(await this.replaceFromCost(await this.textContentByIndex(this.costsTexts, 0))).not.toEqual(costTelnyx);
 	}
 
 	constructor(page) {

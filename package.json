@@ -6,8 +6,8 @@
   "scripts": {
     "test" : "npx playwright test",
     "test:headed" : "npx playwright test --headed",
-    "test1:" : "npx playwright test saveWithTelnyx.spec",
-    "test1:headed" : "npx playwright test saveWithTelnyx.spec --headed ",
+    "test1:" : "npx playwright test urlCurrency.spec",
+    "test1:headed" : "npx playwright test urlCurrency.spec --headed ",
     "reporter": "npx playwright show-report"
 
   },

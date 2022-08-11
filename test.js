@@ -9,6 +9,7 @@ const { DevelopersPage } = require('./pages/developers.page');
 const { IntegrationsPage } = require('./pages/integrations.page');
 const { SaveWithTelnyxPage } = require('./pages/homePage/saveWithTelnyx.page');
 const { PricingPage } = require('./pages/pricing.page');
+const { TwilioPricingCalculatorPage } = require('./pages/twilioPricingCalculator.page');
 
 exports.test = base.test.extend({
 	account: async ({ page }, use) => {
@@ -40,6 +41,9 @@ exports.test = base.test.extend({
 	},
 	pricingPage: async ({ page }, use) => {
 		await use(new PricingPage(page));
+	},
+	twilioPricingCalculatorPage: async ({ page }, use) => {
+		await use(new TwilioPricingCalculatorPage(page));
 	},
 });
 
