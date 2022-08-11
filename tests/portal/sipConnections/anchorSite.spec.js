@@ -35,7 +35,7 @@ test.describe('SIP Connections Anchor Site Functionality', () => {
 		);
 	});
 
-	test.only('Should choose anchor site in the basic options and check if the text in the table is the same', async ({
+	test('Should choose anchor site in the basic options and check if the text in the table is the same', async ({
 		sipConnectionsPage,
 	}) => {
 		const number = getRandomInt(1, 10);
