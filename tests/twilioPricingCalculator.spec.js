@@ -58,7 +58,7 @@ test.describe('Savings calculator Functionality', () => {
 		}
 	});
 
-	test.only('Should check if the subtract and addition buttons work correct', async ({
+	test('Should check if the subtract and addition buttons work correct', async ({
 		twilioPricingCalculatorPage,
 	}) => {
 		for (let index = 0; index < 3; index++)
